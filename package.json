@@ -1,0 +1,31 @@
+{
+  "name": "Gulp-boilerplate-for-web-designers",
+  "version": "0.0.1",
+  "description": "Gulp boilerplate for web designers provides a nice directory and file structure to aid web-designers kickstart their next project. Some standard tasks include: watching/compiling Sass into CSS, Compass and Burbon support, linting JS code, live-reload, file minification and image optimization.",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "~3.4.0",
+    "gulp-ruby-sass": "~0.2.0",
+    "gulp-util": "~2.2.12",
+    "gulp-autoprefixer": "0.0.4",
+    "gulp-minify-css": "~0.2.0",
+    "gulp-load-plugins": "~0.2.0",
+    "gulp-rename": "~0.2.2",
+    "gulp-notify": "~0.3.4-2",
+    "gulp-clean": "~0.2.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "soon"
+  },
+  "keywords": [
+    "gulp",
+    "boilerplate"
+  ],
+  "author": "John Tsevdos",
+  "license": "GPL2"
+}
