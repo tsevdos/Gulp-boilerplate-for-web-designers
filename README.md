@@ -1,14 +1,16 @@
 # Gulp boilerplate for web designers
 
+## Work and documentation in progress
+
 **Gulp boilerplate for web designers** provides a nice directory and file structure to aid web-designers kickstart their next project. It will help you in the development and deployment process of any HTML-based template (and not only). Some of the features that you get out of the box are:
 
 - [SMACSS (Scalable and Modular Architecture for CSS) ](http://smacss.com/) ready infrastructure
 - Compile Sass files
-- [Compass](http://compass-style.org/) and [Burbon](http://bourbon.io/) support
+- Autoprefix styles (you only need to write the web-standard version)
+- [Compass](http://compass-style.org/)support
 - JsLinter
-- CSS, JS and HTML minification
+- CSS and JS minification
 - Image optimization
-- Live-reload
 
 ## Installation
 
@@ -38,5 +40,5 @@ You can run the below tasks.
 
 ## TODO:
 
-- fix the "Port 35729 is already in use by another process"
-- complile more stuff, such as CoffeeScript, stylus, Jade and Haml.
+- Add [Burbon](http://bourbon.io/) support 
+- Fix Live-reload

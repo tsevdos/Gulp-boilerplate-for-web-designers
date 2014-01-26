@@ -1,11 +1,7 @@
 // SMACSSsmacss (http://smacss.com/)
-// Uncomment to use Compass or Bourbon!
+// Uncomment to use Compass
 // @import "compass"; See base/_base.scss for Compass example.
-// @import "bourbon"; See modules/_btns.scss for Bourbon example.
 
-//@import "base/_base"; // Base
-//@import "layout/_layout"; // Layout
-//@import "modules/_modules"; // Modules
+@import "base/_base"; // Base
+@import "layout/_layout"; // Layout
 // more includes depending the project
-
-body { background:red; }

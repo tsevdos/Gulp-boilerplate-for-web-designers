@@ -1,0 +1,10 @@
+// This file is using Compass!!!
+@import "_settings";
+@import "compass/reset";
+@import "_typography";
+@import "_forms";
+
+body { background:$bgcolor; text-align:center; color:$bodycolor; }
+h1 { font-size:3em; margin:1em 0; font-weight:bold; }
+p { margin:0 0 1em; }
+a { color:$bodycolor; font-weight:bold; text-decoration:none; }
