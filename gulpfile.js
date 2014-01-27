@@ -32,6 +32,8 @@ var concat       = require('gulp-concat');
 var imagemin     = require('gulp-imagemin');
 var uglify       = require('gulp-uglify');
 var cache        = require('gulp-cache');
+var jade         = require('gulp-jade');
+var prettify     = require('gulp-html-prettify');
 
 var paths = {
 	app  : './app',
@@ -42,19 +44,11 @@ var paths = {
 // var gulpLoadPlugins = require("gulp-load-plugins");
 // var plugins = gulpLoadPlugins();
 
-gulp.task('markup', function(){
-	return gulp.src(paths.app + '/js/**/*.coffee')
-		.pipe(coffeelint())
-		.pipe(coffee({bare: true}))
-		.pipe(gulp.dest( paths.app + '/js'));
-
-});
-
 gulp.task('styles', function(){
 	return gulp.src([
-			paths.app + '/scss/**/*.scss',
+		paths.app + '/scss/**/*.scss',
 			'!' + paths.app + '/scss/**/_*.scss'
-			])
+		])
 		.pipe(sass({ 
 			style     : 'expanded',
 			compass   : true
@@ -87,7 +81,6 @@ gulp.task('lintscripts', ['coffee'], function(){
 
 });
 
-
 var sripts = [
 	// setup script sequence
 	paths.app + '/js/vendor/jquery-2.1.0.js',
@@ -115,6 +108,25 @@ gulp.task('images', function(){
 		.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
 		.pipe(livereload(server))
 		.pipe(gulp.dest( paths.dest + '/img'));
+
+});
+
+gulp.task('jade', function(){
+
+	return gulp.src(paths.app + '/**/*.jade')
+		.pipe(jade({
+			pretty: true
+		}))
+		.pipe(gulp.dest(paths.app));
+
+});  
+
+gulp.task('markup', [ 'jade' ] , function(){
+	return gulp.src(paths.app + '/**/*.html')
+		.pipe(prettify({
+			indent_char: ' ', indent_size: 2
+		}))
+		.pipe(gulp.dest(paths.dest));
 
 });
 

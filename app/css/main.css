@@ -75,3 +75,7 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
+
+body {
+  background: blue;
+}

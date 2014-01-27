@@ -23,7 +23,10 @@
     "gulp-concat": "~2.1.7",
     "gulp-imagemin": "~0.1.4",
     "gulp-uglify": "~0.2.0",
-    "gulp-cache": "~0.1.1"
+    "gulp-cache": "~0.1.1",
+    "gulp-jade": "~0.4.0",
+    "gulp-haml": "0.0.8",
+    "gulp-html-prettify": "0.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
