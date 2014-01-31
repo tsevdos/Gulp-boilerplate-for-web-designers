@@ -1,6 +1,6 @@
 # Gulp boilerplate for web designers
 
-**Gulp boilerplate for web designers** provides a nice directory and file structure to aid web-designers kickstart their next project. It will help you in the development and deployment process of any HTML-based (and not only) template. Some of the features that you get out of the box are:
+**Gulp boilerplate for web designers** provides a nice directory and file structure to aid web-designers kickstart their next project. It will help you develop and deploy any html-based (and more) templates. Some out of the box features are:
 
 - OOCSS and [SMACSS (Scalable and Modular Architecture for CSS) ](http://smacss.com/) ready infrastructure
 - Compile Sass files
@@ -27,7 +27,7 @@ Follow the [Getting Started with Gulp](https://github.com/gulpjs/gulp/blob/maste
 
 ## File structure
 
-Your **development environment** is the into the **app directory** - you do all the work there. Whenever you are ready you can **build** the work by running the `gulp` task (the `default` task). This task will generate a **public directory** that will contain all your files (CSS, JS, HTML and images) optimized and ready to distribute/upload/share.
+Your **development environment** is into the **app directory** - you do all the work there. Whenever you are ready you can **build** the work by running the `gulp` task (the `default` task). This task will generate a **public directory** that will contain all your files (CSS, JS, HTML and images) optimized and ready to distribute/upload/share.
 
 ## Tasks
 
@@ -40,7 +40,7 @@ You can run the below tasks.
 5. `gulp lintscripts` : This task lints all javascripts files except from those located under the `vendor` directory.
 6. `gulp scripts` : This task will concatanate all scripts into one using the order you'll specify. The `public` version of this file will also ne minified.
 7. `gulp images` : This task will optimize all images (with `.jpg`, `png` and `gif` extension) under the `img` folder.
-8. `gulp jade` : This task will compile you jade templates.
+8. `gulp jade` : This task will compile your jade templates.
 9. `gulp markup` : This task will pretify your html files.
 10. `gulp clean` : This support task cleans (deletes all the contents of) the `public` directory in order to prepare it for the `build` (default task).
 
@@ -48,4 +48,3 @@ You can run the below tasks.
 
 - Add [Burbon](http://bourbon.io/) support
 - Auto load tasks using gulp-load-plugins
-- Do some basic house-keeping 
