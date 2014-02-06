@@ -1,6 +1,7 @@
 {
-  "name": "Gulp-boilerplate-for-web-designers.",
-  "version": "0.0.1",
+  "name": "gulp-boilerplate-for-web-designers",
+  "version": "0.2.0",
+  "private": true,
   "description": "Gulp boilerplate for web designers provides a nice directory and file structure to aid web-designers kickstart their next project. Some standard tasks include: watching/compiling Sass into CSS (with Compass support), linting JS code, compiling coffee scripts, live-reload, file minification and image optimization.",
   "main": "gulpfile.js",
   "dependencies": {},
@@ -29,7 +30,8 @@
     "gulp-html-prettify": "0.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "gulp serve",
+    "test" : "gulp lintscripts"
   },
   "repository": {
     "type": "git",
