@@ -1,6 +1,6 @@
 # Gulp boilerplate for web designers
 
-**Gulp boilerplate for web designers** provides a nice directory and file structure to aid web-designers kickstart their next project. It will help you develop and deploy any html-based (and more) templates. Some out of the box features are:
+**Gulp boilerplate for web designers** provides directory and file structure to aid web-designers kickstart their next project. It will help you develop and deploy any html-based (and more) templates. Some out of the box features :
 
 - OOCSS and [SMACSS (Scalable and Modular Architecture for CSS) ](http://smacss.com/) ready infrastructure
 - Compile Sass files
@@ -11,7 +11,7 @@
 - CSS and JS minification
 - Compiles Jade
 - Image optimization
-- Live-reload (Only works with the appropriate live-reload browser plugin. If you use Chrome you can use [livereload chrome extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei). For other browsers have a look at [livereload browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)).
+- Live-reload (Only works with the appropriate live-reload browser plugin. If you use Chrome you can use the [livereload chrome extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei). For other browsers have a look at [livereload browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)).
 
 ## Installation
 
@@ -27,7 +27,7 @@ Follow the [Getting Started with Gulp](https://github.com/gulpjs/gulp/blob/maste
 
 ## File structure
 
-Your **development environment** is into the **app directory** - you do all the work there. Whenever you are ready you can **build** the work by running the `gulp` task (the `default` task). This task will generate a **public directory** that will contain all your files (CSS, JS, HTML and images) optimized and ready to distribute/upload/share.
+Your **development environment** is in the **app directory** - you do all the work there. Whenever you are ready you can **build** the work by running the `gulp` task (the `default` task). This task will generate a **public directory** that will contain all your files (CSS, JS, HTML and images) optimized and ready to distribute/upload/share.
 
 ## Tasks
 
