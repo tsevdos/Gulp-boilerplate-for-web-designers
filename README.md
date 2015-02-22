@@ -38,8 +38,8 @@ You can run the below tasks.
 3. `gulp styles` : This task compiles all the Sass files and autoprefixes. After that it saves the generated CSS files expanded into the `development` directory and the minified version into the public directory.
 4. `gulp coffee` : This task lints and compiles your coffee script files (you must include them into the `js` directory).
 5. `gulp lintscripts` : This task lints all javascripts files except from those located under the `vendor` directory.
-6. `gulp scripts` : This task will concatanate all scripts into one using the order you'll specify. The `public` version of this file will also ne minified.
-7. `gulp images` : This task will optimize all images (with `.jpg`, `png` and `gif` extension) under the `img` folder.
+6. `gulp scripts` : This task will concatanate all scripts into one using the order you'll specify. The `public` version of this file will also be minified.
+7. `gulp images` : This task will optimize all images (with `jpg`, `png` and `gif` extension) under the `img` folder.
 8. `gulp jade` : This task will compile your jade templates.
 9. `gulp markup` : This task will pretify your html files.
 10. `gulp clean` : This support task cleans (deletes all the contents of) the `public` directory in order to prepare it for the `build` (default task).
