@@ -11,7 +11,13 @@
 - CSS and JS minification
 - Compiles Jade
 - Image optimization
-- Live-reload (Only works with the appropriate live-reload browser plugin. If you use Chrome you can use the [livereload chrome extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei). For other browsers have a look at [livereload browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)).
+
+## Dependencies
+
+You need to install [SASS](https://rubygems.org/gems/sass) and [compass](https://rubygems.org/gems/compass) ruby gems. To do that make sure you have ruby installed and then type the below commands:
+`gem update --system`
+`gem install sass`
+`gem install compass`
 
 ## Installation
 
@@ -21,9 +27,9 @@ Follow the [Getting Started with Gulp](https://github.com/gulpjs/gulp/blob/maste
 2. Make sure to have **[Node.js](http://nodejs.org/download/)** installed
 3. Install **gulp globally** `npm install -g gulp`
 4. `cd` to your project folder
-5. Git clone (`git@github.com:tsevdos/Gulp-boilerplate-for-web-designers.git`) or download the zip from [https://github.com/tsevdos/Gulp-boilerplate-for-web-designers](https://github.com/tsevdos/Gulp-boilerplate-for-web-designers)
-7. Install Gulp and required grunt tasks `npm install`
-8. Run `gulp serve` and enjoy
+5. Git clone (`git clone git@github.com:tsevdos/Gulp-boilerplate-for-web-designers.git`) or [download and extract the zip file](https://github.com/tsevdos/Gulp-boilerplate-for-web-designers)
+7. Install Gulp and required grunt tasks by typing `npm install`
+8. Run `gulp`
 
 ## File structure
 
@@ -34,7 +40,7 @@ Your **development environment** is in the **app directory** - you do all the wo
 You can run the below tasks.
 
 1. `gulp` (default task) : Creates a `public` directory with all the optimized files (read **File structure** section for more details).
-2. `gulp serve` : Probably the most usable task. Just run this task and work elegantly with live-reload and all the cool features listed above.
+2. `gulp watch` : Probably the most usable task. Just run this task and whatever file you edit any file (html, scss, coffee, js, etc.) it passes it through the appropriate pipeline (task).
 3. `gulp styles` : This task compiles all the Sass files and autoprefixes. After that it saves the generated CSS files expanded into the `development` directory and the minified version into the public directory.
 4. `gulp coffee` : This task lints and compiles your coffee script files (you must include them into the `js` directory).
 5. `gulp lintscripts` : This task lints all javascripts files except from those located under the `vendor` directory.
@@ -46,5 +52,4 @@ You can run the below tasks.
 
 ## TODO:
 
-- Add [Burbon](http://bourbon.io/) support
-- Auto load tasks using gulp-load-plugins
+- Add a gulp-live-server reload task

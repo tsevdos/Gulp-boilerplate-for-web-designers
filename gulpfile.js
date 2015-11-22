@@ -1,96 +1,85 @@
 "use strict";
 
 /*
-Grunt installation:
--------------------
-npm install -g gulp
-npm install --save-dev gulp gulp-util
+External Dependencies:
+You need to install SASS and compass as ruby gems. To do that make sure you have ruby installed and thentype the below commands:
+`gem update --system`
+`gem install sass`
+`gem install compass`
 
-Project Dependencies:
----------------------
-npm install gulp --save-dev
+Gulp installation:
+`npm install -g gulp`
 
-Simple Dependency Install:
---------------------------
-npm install (from the same root directory as the `package.json` file)
-
+Gulp Plugins:
+`npm install` (from the same root directory as the `package.json` file)
 */
 
-var gulp         = require('gulp');
-var sass         = require('gulp-ruby-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var minifycss    = require('gulp-minify-css');
-var rename       = require('gulp-rename');
-var clean        = require('gulp-clean');
-var livereload   = require('gulp-livereload');
-var lr           = require('tiny-lr');
-var server       = lr();
-var coffee       = require('gulp-coffee');
-var coffeelint   = require('gulp-coffeelint');
-var jshint       = require('gulp-jshint');
-var concat       = require('gulp-concat');
-var imagemin     = require('gulp-imagemin');
-var uglify       = require('gulp-uglify');
-var cache        = require('gulp-cache');
-var jade         = require('gulp-jade');
-var prettify     = require('gulp-html-prettify');
+// Loads gulp and plugins
+var gulp = require('gulp');
+var del = require('del'); // TODO: del plugin doesn't loads correctly with plugins.del
+var plugins = require('gulp-load-plugins')();
 
+// Paths
 var paths = {
-	app  : './app',
+	app : './app',
 	dest : './public'
 };
 
-// Loads plugins 
-// var gulpLoadPlugins = require("gulp-load-plugins");
-// var plugins = gulpLoadPlugins();
-
-gulp.task('styles', function(){
-	return gulp.src([
-		paths.app + '/scss/**/*.scss',
+gulp.task('styles', function () {
+	return plugins.rubySass([
+			paths.app + '/scss/**/*.scss',
 			'!' + paths.app + '/scss/**/_*.scss'
-		])
-		.pipe(sass({ 
-			style     : 'expanded',
-			compass   : true
+		], {
+			compass : true,
+			style : 'expanded'
+		})
+		.pipe(plugins.autoprefixer({
+			browsers: [
+				'> 1%',
+				'last 2 versions',
+				'firefox >= 4',
+				'safari 7',
+				'safari 8',
+				'IE 8',
+				'IE 9',
+				'IE 10',
+				'IE 11'
+			],
+			cascade: false
 		}))
-		.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(gulp.dest( paths.app + '/css'))
-		.pipe(livereload(server))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(minifycss())
-		.pipe(gulp.dest( paths.dest + '/css'));
+		.pipe(gulp.dest(paths.app + '/css'))
+		.pipe(plugins.rename({suffix: '.min'}))
+		.pipe(plugins.minifyCss())
+		.pipe(gulp.dest(paths.dest + '/css'));
 });
 
-gulp.task('coffee', function(){
+gulp.task('coffee', function () {
 	return gulp.src(paths.app + '/js/**/*.coffee')
-		.pipe(coffeelint())
-		.pipe(coffee({bare: true}))
-		.pipe(livereload(server))
-		.pipe(gulp.dest( paths.app + '/js'));
+		.pipe(plugins.coffeelint())
+		.pipe(plugins.coffee({bare: true}))
+		.pipe(gulp.dest(paths.app + '/js'));
 });
 
-gulp.task('lintscripts', ['coffee'], function(){
+gulp.task('lintscripts', ['coffee'], function () {
 	return gulp.src([
 			'gulpfile.js',
 			paths.app + '/js/**/*.js',
 			'!' + paths.app + '/js/vendor/*'
 		])
-		.pipe(jshint('.jshintrc')) // Edit the .jshintrc file to change the options
-		.pipe(jshint.reporter('jshint-stylish'));
+		.pipe(plugins.jshint('.jshintrc')) // Edit the .jshintrc file to change the options
+		.pipe(plugins.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('scripts', ['coffee' , 'lintscripts'], function(){
+gulp.task('scripts', ['coffee', 'lintscripts'], function () {
 	return gulp.src([
 			// setup script sequence
 			paths.app + '/js/vendor/jquery-2.1.0.js',
-			paths.app + '/js/vendor/jquery.cycle2.js',
 			paths.app + '/js/coffee.js'
 		])
-		.pipe(concat('main.js'))
-		.pipe(gulp.dest( paths.app + '/js'))
-		.pipe(livereload(server))
-		.pipe(uglify())
-		.pipe(rename({suffix: '.min'}))
+		.pipe(plugins.concat('main.js'))
+		.pipe(gulp.dest(paths.app + '/js'))
+		.pipe(plugins.uglify())
+		.pipe(plugins.rename({suffix: '.min'}))
 		.pipe(gulp.dest( paths.dest + '/js'));
 });
 
@@ -100,69 +89,36 @@ gulp.task('images', function(){
 			paths.app + '/img/**/*.jpg',
 			paths.app + '/img/**/*.gif'
 		])
-		.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-		.pipe(livereload(server))
+		.pipe(plugins.cache(plugins.imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
 		.pipe(gulp.dest( paths.dest + '/img'));
 });
 
 gulp.task('jade', function(){
 	return gulp.src(paths.app + '/**/*.jade')
-		.pipe(jade({
+		.pipe(plugins.jade({
 			pretty: true
 		}))
-		.pipe(gulp.dest(paths.app));
-});  
-
-gulp.task('markup', [ 'jade' ] , function(){
-	return gulp.src(paths.app + '/**/*.html')
-		.pipe(prettify({
-			indent_char: ' ', indent_size: 2
-		}))
-		.pipe(livereload(server))
 		.pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('clean', function(){
-	return gulp.src( paths.dest + '/' , {read: false})
-		.pipe(clean());
+gulp.task('markup', ['jade'], function() {
+	return gulp.src(paths.app + '/**/*.html')
+		.pipe(plugins.htmlPrettify({
+			indent_char: ' ',
+			indent_size: 2
+		}))
+		.pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('default', ['clean'] , function(){
-	gulp.run('markup', 'styles', 'scripts', 'images');
+gulp.task('clean', function () {
+	del([paths.dest]);
 });
 
-gulp.task('serve', function() {
+gulp.task('default', ['clean', 'markup', 'styles', 'scripts', 'images']);
 
-	server.listen(35729, function (err) {
-		
-		if (err) return console.log(err);
-
-		// Watch html files
-		gulp.watch(paths.app + '/**/*.html', function() {
-			gulp.run('markup');
-		});
-
-		// Watch .scss files
-		gulp.watch([
-				paths.app + '/scss/**/*.scss',
-				paths.app + '/css/**/*.css',
-			], function() {
-			gulp.run('styles');
-		});
-
-		// Watch .js files
-		gulp.watch([
-				paths.app + '/js/**/*.js',
-				paths.app + '/js/**/*.coffee',
-			], function() {
-			gulp.run('scripts');
-		});
-
-		// Watch images
-		gulp.watch(paths.app + '/img/**/*', function() {
-			gulp.run('images');
-		});
-
-	});
-
+gulp.task('watch', function() {
+	gulp.watch(paths.app + '/**/*.html', ['markup']);
+	gulp.watch([paths.app + '/**/*.scss', paths.app + '/**/*.css'], ['styles']);
+	gulp.watch([paths.app + '/**/*.coffee', paths.app + '/**/*.js'], ['scripts']);
+	gulp.watch([paths.app + '/**/*.jpg', paths.app + '/**/*.png', paths.app + '/**/*.gif'], ['images']);
 });
